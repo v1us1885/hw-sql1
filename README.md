@@ -96,12 +96,15 @@ LIMIT 1;
 
 ```
 SELECT 
-    LOWER(CONCAT(customer.first_name, ' ', customer.last_name)) AS modified_name
+    LOWER(
+        REPLACE(CONCAT(customer.first_name, ' ', customer.last_name), 'll', 'pp')
+    ) AS modified_name
 FROM 
     customer
 WHERE 
-    (LOWER(customer.first_name) = 'kelly' OR LOWER(customer.first_name) = 'willie')
+    LOWER(REPLACE(customer.first_name, 'll', 'pp')) IN ('kelly', 'willie')
     AND customer.active = 1;
+
 
 ```
 
