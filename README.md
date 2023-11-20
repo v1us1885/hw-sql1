@@ -45,8 +45,10 @@ SELECT
 FROM 
     payment
 WHERE 
-    payment_date BETWEEN '2005-06-15' AND '2005-06-19' 
+    payment_date >= '2005-06-15' 
+    AND payment_date < '2005-06-19' 
     AND amount > 10.00;
+
 ```
 
 ### Задание 3
