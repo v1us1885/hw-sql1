@@ -26,24 +26,12 @@
 ### Решение 1
 
 ```
-SELECT 
-    staff.first_name AS employee_first_name,
-    staff.last_name AS employee_last_name,
-    address.city AS store_city,
-    COUNT(customer.customer_id) AS user_count
+SELECT DISTINCT
+    district
 FROM 
-    staff
-JOIN 
-    store ON staff.store_id = store.store_id
-JOIN 
-    address ON store.address_id = address.address_id
-JOIN 
-    customer ON store.store_id = customer.store_id
-GROUP BY 
-    staff.staff_id
-HAVING 
-    user_count > 300;
-
+    address
+WHERE 
+    district LIKE 'K%' AND district LIKE '%a%' AND district NOT LIKE '% %';
 ```
 
 ### Задание 2
@@ -53,12 +41,12 @@ HAVING
 
 ```
 SELECT 
-    COUNT(*) AS movie_count
+    *
 FROM 
-    film
+    payment
 WHERE 
-    length > (SELECT AVG(length) FROM film);
-
+    payment_date BETWEEN '2005-06-15' AND '2005-06-18' 
+    AND amount > 10.00;
 ```
 
 ### Задание 3
@@ -68,19 +56,12 @@ WHERE
 
 ```
 SELECT 
-    MONTH(payment.payment_date) AS payment_month,
-    SUM(payment.amount) AS total_payment,
-    COUNT(rental.rental_id) AS rental_count
+    *
 FROM 
-    payment
-JOIN 
-    rental ON payment.rental_id = rental.rental_id
-GROUP BY 
-    payment_month
+    rental
 ORDER BY 
-    total_payment DESC
-LIMIT 1;
-
+    rental_date DESC
+LIMIT 5;
 ```
 
 ### Задание 4
